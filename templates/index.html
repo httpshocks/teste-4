@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Formulário de Medição{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title mb-0">Formulário de Medição de Espessura</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" id="measurementForm" class="needs-validation" novalidate>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Data do Ensaio</label>
+                                <input type="date" class="form-control" id="data" name="data" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="turno" class="form-label">Turno</label>
+                                <select class="form-select" id="turno" name="turno" required>
+                                    <option value="">Selecione o turno</option>
+                                    <option value="1A">1A</option>
+                                    <option value="1B">1B</option>
+                                    <option value="2C">2C</option>
+                                    <option value="2D">2D</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="serie_medidor" class="form-label">Série do Medidor</label>
+                                <input type="text" class="form-control" id="serie_medidor" name="serie_medidor" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="analista" class="form-label">Analista/Inspetor</label>
+                                <input type="text" class="form-control" id="analista" name="analista" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="coordenador" class="form-label">Coordenador</label>
+                                <input type="text" class="form-control" id="coordenador" name="coordenador" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="bobina" class="form-label">Número da Bobina</label>
+                                        <input type="text" class="form-control" id="bobina" name="bobina" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="maquina" class="form-label">Máquina</label>
+                                        <input type="text" class="form-control" id="maquina" name="maquina" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="op" class="form-label">OP</label>
+                                <input type="text" class="form-control" id="op" name="op" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label for="produto" class="form-label">Produto</label>
+                                <input type="text" class="form-control" id="produto" name="produto" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="nominal" class="form-label">Nominal (mm)</label>
+                                <input type="number" step="0.00001" class="form-control" id="nominal" name="nominal" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="minimo" class="form-label">Mínimo (mm)</label>
+                                <input type="number" step="0.00001" class="form-control" id="minimo" name="minimo" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="maximo" class="form-label">Máximo (mm)</label>
+                                <input type="number" step="0.00001" class="form-control" id="maximo" name="maximo" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="mb-0">Pontos de Medição</h4>
+                        <div>
+                            <button type="button" class="btn btn-secondary" id="addPoint">
+                                <i class="fas fa-plus me-2"></i>Adicionar Ponto
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row" id="measurementPoints">
+                        {% for i in range(1, 11) %}
+                        <div class="col-md-2 mb-3 measurement-point">
+                            <label for="ponto{{ i }}" class="form-label">Ponto {{ i }}</label>
+                            <input type="number" step="0.00001" class="form-control" id="ponto{{ i }}" name="ponto{{ i }}">
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-chart-line me-2"></i>Gerar Gráfico
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
